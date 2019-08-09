@@ -4,7 +4,7 @@ module HashStore
        ) where
 
 import Crypto.Hash.BLAKE2.BLAKE2b (hash)
-import Data.ByteString.Base32 (encode)
+import Data.ByteString.Base58 (encodeBase58, bitcoinAlphabet)
 import Data.ByteString.Char8 (ByteString)
 import System.Directory (createDirectoryIfMissing, doesFileExist)
 import System.FilePath ((</>))
@@ -17,7 +17,7 @@ newtype Hash = Hash { unHash :: ByteString }
 
 -- | Perform 'ByteString' hashing.
 hashContent :: ByteString -> Hash
-hashContent = Hash . encode . hash 64 mempty
+hashContent = Hash . encodeBase58 bitcoinAlphabet . hash 64 mempty
 {-# INLINE hashContent #-}
 
 -- | Build the new 'FilePath' adding the hash of the provided content.
