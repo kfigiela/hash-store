@@ -4,7 +4,7 @@ module HashStore
        ) where
 
 import Crypto.Hash.BLAKE2.BLAKE2b (hash)
-import Data.ByteString.Base16 (encode)
+import Data.ByteString.Base32 (encode)
 import Data.ByteString.Char8 (ByteString)
 import System.Directory (createDirectoryIfMissing, doesFileExist)
 import System.FilePath ((</>))
