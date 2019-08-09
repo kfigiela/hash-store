@@ -22,7 +22,7 @@ hashContent = Hash . encode . hash 64 mempty
 
 -- | Build the new 'FilePath' adding the hash of the provided content.
 hashFile :: ByteString -> FilePath -> FilePath
-hashFile content file = BS.unpack (unHash $ hashContent content) ++ "-" ++ file
+hashFile content file = BS.unpack (unHash $ hashContent content) ++ "-" ++ BS.unpack (unHash $ hashContent (BS.pack file))
 {-# INLINE hashFile #-}
 
 {- | @'hashStore' storePath action (name, content)@ computes @hash@ of @content@
